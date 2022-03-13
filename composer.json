@@ -1,0 +1,63 @@
+{
+    "name": "neo/literay",
+    "description": "LiteRay is a simple open-source free alternative to the Ray desktop app",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Neo Ighodaro",
+            "email": "neo@creativitykills.co",
+            "homepage": "https://neoi.sh",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://github.com/neoighodaro/literay",
+    "keywords": [
+        "literay",
+        "spatie",
+        "ray",
+        "laravel"
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^9.0",
+        "spatie/data-transfer-object": "^3.7",
+        "spatie/laravel-ray": "^1.29"
+    },
+    "require-dev": {
+        "brianium/paratest": "^6.4",
+        "nunomaduro/collision": "^6.1",
+        "orchestra/testbench": "^7.0",
+        "mockery/mockery": "^1.4.4",
+        "vimeo/psalm": "^4.20"
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "Neo\\LiteRay\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Neo\\LiteRay\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Neo\\LiteRay\\LiteRayServiceProvider"
+            ],
+            "aliases": {
+                "LiteRay": "Neo\\LiteRay\\Facades\\LiteRay"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

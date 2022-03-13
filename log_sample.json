@@ -1,0 +1,22 @@
+{
+    "uuid": "e01db327-ec21-4fc9-9b79-de11a15d134d",
+    "payloads": [
+        {
+            "type": "log",
+            "content": { "values": ["Hello"] },
+            "origin": {
+                "file": "/Users/neo/Dev/example-app/routes/web.php",
+                "line_number": 17,
+                "hostname": "Neos-MBP"
+            }
+        }
+    ],
+    "meta": {
+        "php_version": "8.1.2",
+        "php_version_id": 80102,
+        "project_name": null,
+        "laravel_version": "9.4.1",
+        "laravel_ray_package_version": "1.29.4.0",
+        "ray_package_version": "1.34.1.0"
+    }
+}
