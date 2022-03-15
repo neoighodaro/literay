@@ -64,7 +64,7 @@ class RayPayloadsCaster implements Caster
             $query = preg_replace("#\?#", $val, $query, 1);
         }
 
-        return $query;
+        return str_replace('"', '`', $query);
     }
 
     protected function cleanSfDump(mixed $value): mixed
