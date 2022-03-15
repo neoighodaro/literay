@@ -13,5 +13,5 @@ class RayLogPayload extends DataTransferObject implements RayPayload
 
     public array $origin;
 
-    public array $content;
+    public ?array $content;
 }

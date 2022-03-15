@@ -1,25 +1,23 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Neo\LiteRay\View\Components;
 
 use Illuminate\View\Component;
-use Neo\LiteRay\Transfer\RayLog;
+use Neo\LiteRay\Transfer\RayQueryPayload;
 
-class LogBlock extends Component
+class PayloadsQuery extends Component
 {
-    public RayLog $item;
+    public RayQueryPayload $payload;
 
     /**
      * Create the component instance.
      *
-     * @param  RayLog  $item
+     * @param  RayQueryPayload  $payload
      * @return void
      */
-    public function __construct(RayLog $item)
+    public function __construct(RayQueryPayload $payload)
     {
-        $this->item = $item;
+        $this->payload = $payload;
     }
 
     /**
@@ -29,6 +27,6 @@ class LogBlock extends Component
      */
     public function render()
     {
-        return view('literay::components.block', ['item' => $this->item]);
+        return view('literay::components.payloads.query', ['payload' => $this->payload]);
     }
 }

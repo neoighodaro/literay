@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Neo\LiteRay\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Illuminate\Contracts\View\View;
 use Neo\LiteRay\Services\LogParser;
 use Neo\LiteRay\Services\HtmlDumper;
 
@@ -13,17 +14,15 @@ class DisplayController extends Controller
     /**
      * Displays the Ray log.
      *
-     * @return  \Illunmiate\Http\Response
+     * @param  \Neo\LiteRay\Services\LogParser  $logParser
+     * @return \Illuminate\Contracts\View\View
      */
-    public function __invoke(LogParser $logParser)
+    public function __invoke(LogParser $logParser): View
     {
-        return view('literay::display', [
-            'items' => $logParser->parse(),
-            'sfdump' => $this->sfdump(),
-        ]);
+        return view('literay::display', ['items' => $logParser->parse(), 'sfdump' => $this->sfdump()]);
     }
 
-    public function sfdump(): string
+    private function sfdump(): string
     {
         return (new HtmlDumper())->dumpHeader();
     }

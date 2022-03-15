@@ -17,7 +17,7 @@ class PayloadsLog extends Component
      * @param  RayLogPayload  $payload
      * @return void
      */
-    public function __construct($payload)
+    public function __construct(RayLogPayload $payload)
     {
         $this->payload = $payload;
     }
@@ -25,7 +25,7 @@ class PayloadsLog extends Component
     /**
      * Get the view / view contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\Support\Htmlable|\Closure|string
+     * @return \Illuminate\Contracts\View\View
      */
     public function render()
     {

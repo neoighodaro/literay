@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Neo\LiteRay\Transfer;
 
+use Carbon\Carbon;
 use Spatie\DataTransferObject\DataTransferObject;
 use Spatie\DataTransferObject\Attributes\CastWith;
 use Neo\LiteRay\Transfer\Casters\RayPayloadsCaster;
@@ -17,4 +18,6 @@ class RayLog extends DataTransferObject
     public array $payloads;
 
     public RayLogMeta $meta;
+
+    public Carbon $date;
 }

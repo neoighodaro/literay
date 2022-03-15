@@ -20,8 +20,28 @@ class BeaconController extends Controller
      */
     public function __invoke(Request $request, RayDataSource $dataSource): Response
     {
-        $dataSource->persist($request->all());
+        $dataSource->persist(
+            $this->prepareData($request->all())
+        );
 
         return response('', 200);
+    }
+
+    /**
+     * @param  array  $data
+     * @return array
+     */
+    private function prepareData(array $data): array
+    {
+        $data['date'] = now()->toIso8601String();
+        $data['payloads'] = array_map(static fn (array $payload) => [
+            ...$payload,
+            'type' => match ($payload['type']) {
+                'executed_query' => 'query',
+                default => $payload['type'],
+            },
+        ], $data['payloads'] ?? []);
+
+        return $data;
     }
 }

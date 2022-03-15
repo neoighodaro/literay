@@ -32,10 +32,31 @@ class RayFileSource implements RayDataSource
         $payloads = $data['payloads'] ?? null;
 
         if ($uuid && $payloads && $meta) {
-            $dest = fopen($this->sourceFile(), 'a');
-            fwrite($dest, json_encode($data).PHP_EOL);
-            fclose($dest);
+            $file = $this->sourceFile();
+            $log = json_encode($data).PHP_EOL;
+
+            $handle = fopen($this->sourceFile(), 'r+');
+            $len = strlen($log);
+            $finalLen = filesize($file) + $len;
+            $oldCache = fread($handle, $len);
+            rewind($handle);
+
+            $i = 1;
+            while (ftell($handle) < $finalLen) {
+                fwrite($handle, $log);
+                $log = $oldCache;
+                $oldCache = fread($handle, $len);
+                fseek($handle, $i * $len);
+                $i++;
+            }
+
+            fclose($handle);
         }
+    }
+
+    public function clear(): void
+    {
+        File::put($this->sourceFile(), '');
     }
 
     private function sourceFile(): string

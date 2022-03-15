@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Neo\LiteRay\Services;
 
+use Carbon\Carbon;
 use Neo\LiteRay\Transfer\RayLog;
 use Illuminate\Support\LazyCollection;
 use Neo\LiteRay\Contracts\RayDataParser;
@@ -36,7 +37,12 @@ class LogParser implements RayDataParser
     {
         return $this->source->data()
             ->map(static function (?array $line) {
-                return $line ? new RayLog(uuid: $line['uuid'], meta: $line['meta'], payloads: $line['payloads']) : null;
+                return $line ? new RayLog(
+                    uuid: $line['uuid'],
+                    meta: $line['meta'],
+                    payloads: $line['payloads'],
+                    date: Carbon::parse($line['date']),
+                ) : null;
             })
             ->filter();
     }

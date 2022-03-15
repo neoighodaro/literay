@@ -9,4 +9,6 @@ interface RayDataSource
     public function persist(array $data): void;
 
     public function data(): LazyCollection;
+
+    public function clear(): void;
 }

@@ -1,4 +1,4 @@
-<div class="py-3">
+<div>
   @foreach ($payload->content as $content)
   <div class="p-2 bg-slate-100 rounded-md text-xs text-slate-700">
     {!! $content !!}
