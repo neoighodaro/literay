@@ -38,6 +38,7 @@ class BeaconController extends Controller
             ...$payload,
             'type' => match ($payload['type']) {
                 'executed_query' => 'query',
+                'eloquent_model' => 'model',
                 default => $payload['type'],
             },
         ], $data['payloads'] ?? []);

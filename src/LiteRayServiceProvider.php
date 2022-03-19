@@ -9,6 +9,7 @@ use Illuminate\Support\ServiceProvider;
 use Neo\LiteRay\Contracts\RayDataSource;
 use Neo\LiteRay\View\Components\LogBlock;
 use Neo\LiteRay\View\Components\PayloadsLog;
+use Neo\LiteRay\View\Components\PayloadsModel;
 use Neo\LiteRay\View\Components\PayloadsQuery;
 
 class LiteRayServiceProvider extends ServiceProvider
@@ -34,8 +35,12 @@ class LiteRayServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'literay');
 
         $this->loadViewComponentsAs('literay', [
+            // Payloads component
             PayloadsLog::class,
             PayloadsQuery::class,
+            PayloadsModel::class,
+
+            // Block
             LogBlock::class,
         ]);
 

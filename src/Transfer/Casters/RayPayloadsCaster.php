@@ -7,6 +7,7 @@ namespace Neo\LiteRay\Transfer\Casters;
 use Exception;
 use Spatie\DataTransferObject\Caster;
 use Neo\LiteRay\Transfer\RayLogPayload;
+use Neo\LiteRay\Transfer\RayModelPayload;
 use Neo\LiteRay\Transfer\RayQueryPayload;
 
 class RayPayloadsCaster implements Caster
@@ -29,6 +30,13 @@ class RayPayloadsCaster implements Caster
                     time: $data['content']['time'] ?? null,
                     connection_name: $data['content']['connection_name'] ?? null,
                     sql: $this->insertBinds($data['content']['sql'] ?? null, $data['content']['bindings'] ?? []),
+                ),
+                'model' => new RayModelPayload(
+                    type: $type,
+                    origin: $origin,
+                    attributes: $this->cleanSfDump($data['content']['attributes'] ?? null),
+                    relations: $this->cleanSfDump($data['content']['relations'] ?? null),
+                    model: $data['content']['class_name'] ?? null,
                 ),
                 'exception' => null,
                 default => null,
